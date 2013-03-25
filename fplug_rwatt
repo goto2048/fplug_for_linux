@@ -1,0 +1,50 @@
+#!/bin/sh
+# -*- sh -*-
+
+: << =cut
+
+=head1 NAME
+
+fplug_rwatt - Plugin to realtime wattmeter at fplug
+
+=head1 NOTES
+
+Especially the average and max values on the bigger graphs (yearly) can be interesting.
+
+=head1 AUTHOR
+
+Contributed by Toshiya Goto
+
+=head1 LICENSE
+
+Unknown license
+
+=head1 MAGIC MARKERS
+
+ #%# family=auto
+ #%# capabilities=autoconf
+
+=cut
+
+. $MUNIN_LIBDIR/plugins/plugin.sh
+
+if [ "$1" = "autoconf" ]; then
+	echo yes 
+	exit 0
+fi
+
+if [ "$1" = "config" ]; then
+
+	echo 'graph_title fplug_wattmeter'
+	echo 'graph_args --base 1000 -l 0 '
+	echo 'graph_scale no'
+	echo 'graph_vlabel watt'
+	echo 'graph_category fplug'
+	echo 'fplug_rwatt.label fplug_rwatt'
+	echo 'fplug_rwatt.draw LINE2'
+	print_warning fplug_rwatt
+	print_critical fplug_rwatt
+	exit 0
+fi
+
+echo fplug_rwatt.value `/usr/local/bin/fpstatus -w`

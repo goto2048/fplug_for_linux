@@ -1,0 +1,36 @@
+Fujitsu-BSC / F-PLUG
+Data-handring guide and sample program
+ for OpenBlocks A Series and many Linux systems.
+
+  -- 2013/03/04 rev 0.1 Toshiya Goto / Plat'home Co., LTD.
+
+1. basic function-test program for OpenBlocks and F-PLUG using RFComm device.
+fptest.c
+fptest.h
+
+ Usage:
+ # make fptest
+ #./fptest
+
+2.data-handring program for munin plugins.
+fpstatus.c
+fptest.h
+
+ Usage:
+ # make fpstatus
+ # cp fpstatus /usr/local/bin
+
+3. munin plugins
+fplug_temp
+fplug_humid
+fplug_illum
+fplug_rwatt
+
+ Usage:
+ # cp fplug_* /usr/share/munin/plugins
+
+4.Documents
+Data Handring Guide:
+  README.F-PLUG.jp (UTF-8)
+Message list:
+  F-PLUG_Message_list
